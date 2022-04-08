@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+    palette = {},
+}
 
 local valid_variant = function(variant)
     local valid = {
