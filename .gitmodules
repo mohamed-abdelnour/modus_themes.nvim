@@ -1,0 +1,3 @@
+[submodule "modus-themes"]
+    path = modus-themes
+    url = https://github.com/protesilaos/modus-themes.git

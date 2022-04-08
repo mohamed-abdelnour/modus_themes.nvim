@@ -1,0 +1,60 @@
+#!/usr/bin/env dash
+
+VIVENDI='vivendi'
+OPERANDI='operandi'
+
+source_file() {
+    printf '%s/modus-themes/modus-themes.el' "$(git rev-parse --show-toplevel)"
+}
+
+extract_variables() {
+    emacs -Q --batch --load "$(source_file)" --load 'extract.el'
+}
+
+convert_to_lua() {
+    sed -E \
+        -e 's/\)+"?/",\n/g' \
+        -e 's/[" ]?\(+//g' \
+        -e 's/-/_/g' \
+        -e 's/\. /= "/g' \
+        "$1"
+}
+
+return_table() {
+    xargs -0 printf 'return {%s}\n'
+}
+
+generate_palette() {
+    convert_to_lua "$1" | sort | return_table | stylua -s -
+}
+
+backup_old_palette() {
+    [ -e "$1" ] && mv "$1" "$2"
+}
+
+diff_new_palette() {
+    [ -e "$1" ] &&
+        diff -u --color=always "$1" "$2" &&
+        rm "$1" ||
+        return 0
+}
+
+generate() {
+    lua_file="${1}.lua"
+    lua_backup_file="${lua_file}.bk"
+    elisp_file="${1}.el"
+
+    backup_old_palette "$lua_file" "$lua_backup_file"
+    generate_palette "$elisp_file" >"$lua_file"
+    rm "$elisp_file"
+    diff_new_palette "$lua_backup_file" "$lua_file"
+}
+
+main() {
+    extract_variables
+
+    generate "$VIVENDI"
+    generate "$OPERANDI"
+}
+
+main
