@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 
-VIVENDI='vivendi'
 OPERANDI='operandi'
+VIVENDI='vivendi'
 
 source_file() {
     printf '%s/modus-themes/modus-themes.el' "$(git rev-parse --show-toplevel)"
@@ -53,8 +53,8 @@ generate() {
 main() {
     extract_variables
 
-    generate "$VIVENDI"
     generate "$OPERANDI"
+    generate "$VIVENDI"
 }
 
 main

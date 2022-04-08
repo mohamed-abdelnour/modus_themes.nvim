@@ -2,10 +2,9 @@ local M = {}
 
 local valid_variant = function(variant)
     local valid = {
-        vivendi = true,
         operandi = true,
+        vivendi = true,
     }
-
     if valid[variant] == nil then
         vim.notify(variant .. " is not a valid theme variant.", vim.log.levels.ERROR)
         return false
@@ -45,12 +44,12 @@ M.setup = function(arg)
     end
 end
 
-M.vivendi = function()
-    M.setup({ variant = "vivendi" })
-end
-
 M.operandi = function()
     M.setup({ variant = "operandi" })
+end
+
+M.vivendi = function()
+    M.setup({ variant = "vivendi" })
 end
 
 return M
