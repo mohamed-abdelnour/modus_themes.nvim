@@ -14,6 +14,14 @@ local valid_variant = function(variant)
     end
 end
 
+local set_background = function(variant)
+    local background = {
+        operandi = "light",
+        vivendi = "dark",
+    }
+    vim.opt.background = background[variant]
+end
+
 local define_theme = require("modus_themes/define_theme")
 
 local set_highlights = function()
@@ -31,6 +39,7 @@ M.setup = function(arg)
     arg = arg or {}
     local variant = arg.variant or "vivendi"
     if valid_variant(variant) then
+        set_background(variant)
         M.palette = require("modus_themes/palettes/" .. variant)
         set_highlights()
     end
