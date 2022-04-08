@@ -5,12 +5,7 @@ local valid_variant = function(variant)
         operandi = true,
         vivendi = true,
     }
-    if valid[variant] == nil then
-        vim.notify(variant .. " is not a valid theme variant.", vim.log.levels.ERROR)
-        return false
-    else
-        return true
-    end
+    return valid[variant]
 end
 
 local set_background = function(variant)
@@ -41,6 +36,8 @@ M.setup = function(arg)
         set_background(variant)
         M.palette = require("modus_themes/palettes/" .. variant)
         set_highlights()
+    else
+        vim.notify(variant .. " is not a valid theme variant.", vim.log.levels.ERROR)
     end
 end
 
