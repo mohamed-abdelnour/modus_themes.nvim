@@ -107,6 +107,11 @@ return function(p)
     g.DiagnosticHint = g.Number
     g.DiagnosticInfo = g.Keyword
     g.DiagnosticWarn = { fg = p.yellow_alt_other }
+    -- Underlined
+    g.DiagnosticUnderlineError = { underline = true, sp = p.red_alt_other }
+    g.DiagnosticUnderlineHint = { underline = true, sp = p.blue_alt_other }
+    g.DiagnosticUnderlineInfo = { underline = true, sp = p.magenta_alt_other }
+    g.DiagnosticUnderlineWarn = { underline = true, sp = p.yellow_alt_other }
     -- Signs
     g.DiagnosticSignError = { bg = p.bg_dim, fg = p.red_alt_other }
     g.DiagnosticSignHint = { bg = p.bg_dim, fg = p.blue_alt_other }
@@ -126,10 +131,6 @@ return function(p)
     g.DiagnosticFloatingHint = g.DiagnosticHint
     g.DiagnosticFloatingInfo = g.DiagnosticInfo
     g.DiagnosticFloatingWarn = g.DiagnosticWarn
-    g.DiagnosticUnderlineError = g.DiagnosticError
-    g.DiagnosticUnderlineHint = g.DiagnosticHint
-    g.DiagnosticUnderlineInfo = g.DiagnosticInfo
-    g.DiagnosticUnderlineWarn = g.DiagnosticWarn
     g.Error = g.DiagnosticError
     g.ErrorMsg = g.DiagnosticVirtualTextError
     g.QuickFixLine = g.DiagnosticVirtualTextSuccess
