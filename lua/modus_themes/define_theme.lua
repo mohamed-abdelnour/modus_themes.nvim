@@ -1,304 +1,302 @@
 return function(p)
-    local g = {}
+    return {
+        -- Default and standard groups
+        Bold = { bold = true },
+        Boolean = { fg = p.magenta_alt },
+        ColorColumn = { bg = p.bg_hl_line },
+        Comment = { fg = p.fg_alt },
+        CursorLineNr = { bg = p.bg_active },
+        DiffAdd = { bg = p.bg_diff_focus_added, fg = p.fg_diff_focus_added },
+        DiffChange = { bg = p.bg_diff_focus_changed, fg = p.fg_diff_focus_changed },
+        DiffDelete = { bg = p.bg_diff_focus_removed, fg = p.fg_diff_focus_removed },
+        DiffText = { bg = p.bg_diff_refine_changed, fg = p.fg_diff_refine_changed },
+        Directory = { fg = p.blue },
+        EndOfBuffer = { fg = p.bg_main },
+        Exception = { fg = p.yellow },
+        FloatBorder = { bg = p.bg_dim, fg = p.fg_window_divider_outer },
+        Function = { fg = p.magenta },
+        Ignore = { bg = p.bg_alt, fg = p.fg_alt },
+        IncSearch = { bg = p.cyan_refine_bg, fg = p.cyan_refine_fg },
+        Italic = { italic = true },
+        Keyword = { fg = p.magenta_alt_other },
+        Label = { fg = p.red_alt_other },
+        LineNr = { bg = p.bg_dim, fg = p.fg_alt },
+        MatchParen = { bg = p.bg_paren_match, fg = p.fg_main },
+        NonText = { fg = p.fg_unfocused },
+        None = { fg = "none" },
+        Normal = { fg = p.fg_main },
+        NormalFloat = { bg = p.bg_dim },
+        Number = { fg = p.blue_alt_other },
+        Pmenu = { bg = p.bg_alt },
+        PmenuSel = { bg = p.cyan_subtle_bg },
+        PmenuThumb = { bg = p.fg_alt },
+        SpecialKey = { fg = p.fg_escape_char_construct },
+        StatusLine = { bg = p.bg_dim, fg = p.fg_active },
+        StatusLineNC = { bg = p.bg_dim, fg = p.fg_inactive },
+        String = { fg = p.blue_alt },
+        Substitute = { bg = p.yellow_refine_bg, fg = p.yellow_refine_fg },
+        TermCursor = { bg = p.fg_main, fg = p.bg_main },
+        Title = { fg = p.cyan },
+        Type = { fg = p.cyan_alt_other },
+        Underlined = { underline = true },
+        VertSplit = { fg = p.fg_window_divider_inner },
+        Visual = { bg = p.bg_region, fg = p.fg_main },
+        Whitespace = { bg = p.bg_whitespace, fg = p.fg_whitespace },
+        -- Extra
+        Link = { underline = true, fg = p.blue_alt_other },
+        S1 = { link = "Normal" },
+        S2 = { fg = p.fg_special_warm },
+        S3 = { fg = p.fg_special_cold },
+        S4 = { fg = p.fg_special_mild },
+        S5 = { fg = p.fg_special_calm },
+        S6 = { fg = p.yellow_nuanced_fg },
+        S7 = { fg = p.red_nuanced_fg },
+        S8 = { fg = p.magenta_nuanced_fg },
+        -- Linked
+        Builtin = { link = "Boolean" },
+        Character = { link = "Type" },
+        Conceal = { link = "Directory" },
+        Conditional = { link = "Keyword" },
+        Constant = { link = "Number" },
+        Cursor = { link = "Normal" },
+        CursorColumn = { link = "ColorColumn" },
+        CursorIM = { link = "Normal" },
+        CursorLine = { link = "ColorColumn" },
+        Debug = { link = "Boolean" },
+        Define = { link = "Label" },
+        Delimiter = { link = "Normal" },
+        Float = { link = "Number" },
+        FoldColumn = { link = "LineNr" },
+        Folded = { link = "Ignore" },
+        Identifier = { link = "Title" },
+        Include = { link = "Label" },
+        Macro = { link = "Boolean" },
+        ModeMsg = { link = "Normal" },
+        MoreMsg = { link = "Type" },
+        MsgArea = { link = "Normal" },
+        MsgSeparator = { link = "Pmenu" },
+        NormalNC = { link = "Normal" },
+        Operator = { link = "Keyword" },
+        PmenuSbar = { link = "Pmenu" },
+        PreCondit = { link = "Label" },
+        PreProc = { link = "Label" },
+        Question = { link = "Type" },
+        Repeat = { link = "Boolean" },
+        SignColumn = { link = "LineNr" },
+        Special = { link = "Keyword" },
+        SpecialChar = { link = "Keyword" },
+        SpecialComment = { link = "Number" },
+        Statement = { link = "Keyword" },
+        StorageClass = { link = "Type" },
+        Structure = { link = "Type" },
+        TabLine = { link = "Ignore" },
+        TabLineFill = { link = "None" },
+        TabLineSel = { link = "PmenuSel" },
+        Tag = { link = "Boolean" },
+        TermCursorNC = { link = "TermCursor" },
+        Todo = { link = "Label" },
+        Typedef = { link = "Type" },
+        VisualNOS = { link = "Visual" },
+        WildMenu = { link = "PmenuSel" },
+        lCursor = { link = "Normal" },
 
-    -- Default and standard groups
-    g.Bold = { bold = true }
-    g.Boolean = { fg = p.magenta_alt }
-    g.ColorColumn = { bg = p.bg_hl_line }
-    g.Comment = { fg = p.fg_alt }
-    g.CursorLineNr = { bg = p.bg_active }
-    g.DiffAdd = { bg = p.bg_diff_focus_added, fg = p.fg_diff_focus_added }
-    g.DiffChange = { bg = p.bg_diff_focus_changed, fg = p.fg_diff_focus_changed }
-    g.DiffDelete = { bg = p.bg_diff_focus_removed, fg = p.fg_diff_focus_removed }
-    g.DiffText = { bg = p.bg_diff_refine_changed, fg = p.fg_diff_refine_changed }
-    g.Directory = { fg = p.blue }
-    g.EndOfBuffer = { fg = p.bg_main }
-    g.Exception = { fg = p.yellow }
-    g.FloatBorder = { bg = p.bg_dim, fg = p.fg_window_divider_outer }
-    g.Function = { fg = p.magenta }
-    g.Ignore = { bg = p.bg_alt, fg = p.fg_alt }
-    g.IncSearch = { bg = p.cyan_refine_bg, fg = p.cyan_refine_fg }
-    g.Italic = { italic = true }
-    g.Keyword = { fg = p.magenta_alt_other }
-    g.Label = { fg = p.red_alt_other }
-    g.LineNr = { bg = p.bg_dim, fg = p.fg_alt }
-    g.MatchParen = { bg = p.bg_paren_match, fg = p.fg_main }
-    g.NonText = { fg = p.fg_unfocused }
-    g.None = { fg = "none" }
-    g.Normal = { fg = p.fg_main }
-    g.NormalFloat = { bg = p.bg_dim }
-    g.Number = { fg = p.blue_alt_other }
-    g.Pmenu = { bg = p.bg_alt }
-    g.PmenuSel = { bg = p.cyan_subtle_bg }
-    g.PmenuThumb = { bg = p.fg_alt }
-    g.SpecialKey = { fg = p.fg_escape_char_construct }
-    g.StatusLine = { bg = p.bg_dim, fg = p.fg_active }
-    g.StatusLineNC = { bg = p.bg_dim, fg = p.fg_inactive }
-    g.String = { fg = p.blue_alt }
-    g.Substitute = { bg = p.yellow_refine_bg, fg = p.yellow_refine_fg }
-    g.TermCursor = { bg = p.fg_main, fg = p.bg_main }
-    g.Title = { fg = p.cyan }
-    g.Type = { fg = p.cyan_alt_other }
-    g.Underlined = { underline = true }
-    g.VertSplit = { fg = p.fg_window_divider_inner }
-    g.Visual = { bg = p.bg_region, fg = p.fg_main }
-    g.Whitespace = { bg = p.bg_whitespace, fg = p.fg_whitespace }
-    -- Extra
-    g.Link = { underline = true, fg = p.blue_alt_other }
-    g.S1 = g.Normal
-    g.S2 = { fg = p.fg_special_warm }
-    g.S3 = { fg = p.fg_special_cold }
-    g.S4 = { fg = p.fg_special_mild }
-    g.S5 = { fg = p.fg_special_calm }
-    g.S6 = { fg = p.yellow_nuanced_fg }
-    g.S7 = { fg = p.red_nuanced_fg }
-    g.S8 = { fg = p.magenta_nuanced_fg }
-    -- Linked
-    g.Builtin = g.Boolean
-    g.Character = g.Type
-    g.Conceal = g.Directory
-    g.Conditional = g.Keyword
-    g.Constant = g.Number
-    g.Cursor = g.Normal
-    g.CursorColumn = g.ColorColumn
-    g.CursorIM = g.Normal
-    g.CursorLine = g.ColorColumn
-    g.Debug = g.Boolean
-    g.Define = g.Label
-    g.Delimiter = g.Normal
-    g.Float = g.Number
-    g.FoldColumn = g.LineNr
-    g.Folded = g.Ignore
-    g.Identifier = g.Title
-    g.Include = g.Label
-    g.Macro = g.Boolean
-    g.ModeMsg = g.Normal
-    g.MoreMsg = g.Type
-    g.MsgArea = g.Normal
-    g.MsgSeparator = g.Pmenu
-    g.NormalNC = g.Normal
-    g.Operator = g.Keyword
-    g.PmenuSbar = g.Pmenu
-    g.PreCondit = g.Label
-    g.PreProc = g.Label
-    g.Question = g.Type
-    g.Repeat = g.Boolean
-    g.SignColumn = g.LineNr
-    g.Special = g.Keyword
-    g.SpecialChar = g.Keyword
-    g.SpecialComment = g.Number
-    g.Statement = g.Keyword
-    g.StorageClass = g.Type
-    g.Structure = g.Type
-    g.TabLine = g.Ignore
-    g.TabLineFill = g.None
-    g.TabLineSel = g.PmenuSel
-    g.Tag = g.Boolean
-    g.TermCursorNC = g.TermCursor
-    g.Todo = g.Label
-    g.Typedef = g.Type
-    g.VisualNOS = g.Visual
-    g.WildMenu = g.PmenuSel
-    g.lCursor = g.Normal
+        -- Diagnostic
+        -- Base
+        DiagnosticError = { link = "Label" },
+        DiagnosticHint = { link = "Number" },
+        DiagnosticInfo = { link = "Keyword" },
+        DiagnosticWarn = { fg = p.yellow_alt_other },
+        -- Underlined
+        DiagnosticUnderlineError = { underline = true, sp = p.red_alt_other },
+        DiagnosticUnderlineHint = { underline = true, sp = p.blue_alt_other },
+        DiagnosticUnderlineInfo = { underline = true, sp = p.magenta_alt_other },
+        DiagnosticUnderlineWarn = { underline = true, sp = p.yellow_alt_other },
+        -- Signs
+        DiagnosticSignError = { bg = p.bg_dim, fg = p.red_alt_other },
+        DiagnosticSignHint = { bg = p.bg_dim, fg = p.blue_alt_other },
+        DiagnosticSignInfo = { bg = p.bg_dim, fg = p.magenta_alt_other },
+        DiagnosticSignWarn = { bg = p.bg_dim, fg = p.yellow_alt_other },
+        -- Virtual Text
+        DiagnosticVirtualTextError = { bg = p.red_intense_bg, fg = p.fg_main },
+        DiagnosticVirtualTextHint = { bg = p.cyan_subtle_bg, fg = p.fg_dim },
+        DiagnosticVirtualTextInfo = { bg = p.magenta_subtle_bg, fg = p.fg_dim },
+        DiagnosticVirtualTextWarn = { bg = p.yellow_intense_bg, fg = p.fg_main },
+        -- Extra
+        DiagnosticSignSuccess = { bg = p.bg_dim, fg = p.green_alt_other },
+        DiagnosticVirtualTextDebug = { bg = p.fg_alt, fg = p.bg_main },
+        DiagnosticVirtualTextSuccess = { bg = p.green_intense_bg, fg = p.fg_main },
+        -- Linked
+        DiagnosticFloatingError = { link = "DiagnosticError" },
+        DiagnosticFloatingHint = { link = "DiagnosticHint" },
+        DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
+        DiagnosticFloatingWarn = { link = "DiagnosticWarn" },
+        Error = { link = "DiagnosticError" },
+        ErrorMsg = { link = "DiagnosticVirtualTextError" },
+        QuickFixLine = { link = "DiagnosticVirtualTextSuccess" },
+        Search = { link = "DiagnosticVirtualTextSuccess" },
+        SpellBad = { link = "DiagnosticVirtualTextError" },
+        SpellCap = { link = "DiagnosticVirtualTextWarn" },
+        SpellLocal = { link = "DiagnosticVirtualTextInfo" },
+        SpellRare = { link = "DiagnosticVirtualTextHint" },
+        WarningMsg = { link = "DiagnosticVirtualTextWarn" },
 
-    -- Diagnostic
-    -- Base
-    g.DiagnosticError = g.Label
-    g.DiagnosticHint = g.Number
-    g.DiagnosticInfo = g.Keyword
-    g.DiagnosticWarn = { fg = p.yellow_alt_other }
-    -- Underlined
-    g.DiagnosticUnderlineError = { underline = true, sp = p.red_alt_other }
-    g.DiagnosticUnderlineHint = { underline = true, sp = p.blue_alt_other }
-    g.DiagnosticUnderlineInfo = { underline = true, sp = p.magenta_alt_other }
-    g.DiagnosticUnderlineWarn = { underline = true, sp = p.yellow_alt_other }
-    -- Signs
-    g.DiagnosticSignError = { bg = p.bg_dim, fg = p.red_alt_other }
-    g.DiagnosticSignHint = { bg = p.bg_dim, fg = p.blue_alt_other }
-    g.DiagnosticSignInfo = { bg = p.bg_dim, fg = p.magenta_alt_other }
-    g.DiagnosticSignWarn = { bg = p.bg_dim, fg = p.yellow_alt_other }
-    -- Virtual Text
-    g.DiagnosticVirtualTextError = { bg = p.red_intense_bg, fg = p.fg_main }
-    g.DiagnosticVirtualTextHint = { bg = p.cyan_subtle_bg, fg = p.fg_dim }
-    g.DiagnosticVirtualTextInfo = { bg = p.magenta_subtle_bg, fg = p.fg_dim }
-    g.DiagnosticVirtualTextWarn = { bg = p.yellow_intense_bg, fg = p.fg_main }
-    -- Extra
-    g.DiagnosticSignSuccess = { bg = p.bg_dim, fg = p.green_alt_other }
-    g.DiagnosticVirtualTextDebug = { bg = p.fg_alt, fg = p.bg_main }
-    g.DiagnosticVirtualTextSuccess = { bg = p.green_intense_bg, fg = p.fg_main }
-    -- Linked
-    g.DiagnosticFloatingError = g.DiagnosticError
-    g.DiagnosticFloatingHint = g.DiagnosticHint
-    g.DiagnosticFloatingInfo = g.DiagnosticInfo
-    g.DiagnosticFloatingWarn = g.DiagnosticWarn
-    g.Error = g.DiagnosticError
-    g.ErrorMsg = g.DiagnosticVirtualTextError
-    g.QuickFixLine = g.DiagnosticVirtualTextSuccess
-    g.Search = g.DiagnosticVirtualTextSuccess
-    g.SpellBad = g.DiagnosticVirtualTextError
-    g.SpellCap = g.DiagnosticVirtualTextWarn
-    g.SpellLocal = g.DiagnosticVirtualTextInfo
-    g.SpellRare = g.DiagnosticVirtualTextHint
-    g.WarningMsg = g.DiagnosticVirtualTextWarn
+        -- LSP
+        LspReferenceText = { bg = p.bg_hl_alt },
+        -- Linked
+        LspCodeLens = { link = "NonText" },
+        LspReferenceRead = { link = "LspReferenceText" },
+        LspReferenceWrite = { link = "LspReferenceText" },
 
-    -- LSP
-    g.LspReferenceText = { bg = p.bg_hl_alt }
-    -- Linked
-    g.LspCodeLens = g.NonText
-    g.LspReferenceRead = g.LspReferenceText
-    g.LspReferenceWrite = g.LspReferenceText
+        -- Tree-sitter
+        TSStrike = { strikethrough = true },
+        -- Linked
+        TSAnnotation = { link = "Label" },
+        TSAttribute = { link = "Label" },
+        TSBoolean = { link = "Boolean" },
+        TSCharacter = { link = "Character" },
+        TSComment = { link = "Comment" },
+        TSConditional = { link = "Conditional" },
+        TSConstBuiltin = { link = "Builtin" },
+        TSConstMacro = { link = "Macro" },
+        TSConstant = { link = "Constant" },
+        TSConstructor = { link = "Type" },
+        TSDanger = { link = "DiagnosticVirtualTextError" },
+        TSEmphasis = { link = "Special" },
+        TSEnvironment = { link = "Macro" },
+        TSEnvironmentName = { link = "Type" },
+        TSError = { link = "DiagnosticError" },
+        TSException = { link = "Exception" },
+        TSField = { link = "Identifier" },
+        TSFloat = { link = "Float" },
+        TSFuncBuiltin = { link = "Builtin" },
+        TSFuncMacro = { link = "Label" },
+        TSFunction = { link = "Function" },
+        TSInclude = { link = "Include" },
+        TSKeyword = { link = "Keyword" },
+        TSKeywordFunction = { link = "Keyword" },
+        TSKeywordOperator = { link = "Operator" },
+        TSKeywordReturn = { link = "Keyword" },
+        TSLabel = { link = "Label" },
+        TSLiteral = { link = "String" },
+        TSMath = { link = "Special" },
+        TSMethod = { link = "Function" },
+        TSNamespace = { link = "Label" },
+        TSNone = { link = "NonText" },
+        TSNote = { link = "SpecialComment" },
+        TSNumber = { link = "Number" },
+        TSOperator = { link = "Operator" },
+        TSParameter = { link = "Identifier" },
+        TSParameterReference = { link = "Identifier" },
+        TSProperty = { link = "Identifier" },
+        TSPunctBracket = { link = "Normal" },
+        TSPunctDelimiter = { link = "Delimiter" },
+        TSPunctSpecial = { link = "Keyword" },
+        TSRepeat = { link = "Repeat" },
+        TSString = { link = "String" },
+        TSStringEscape = { link = "Keyword" },
+        TSStringRegex = { link = "String" },
+        TSStringSpecial = { link = "SpecialChar" },
+        TSStrong = { link = "Bold" },
+        TSSymbol = { link = "Identifier" },
+        TSTag = { link = "Label" },
+        TSTagAttribute = { link = "Identifier" },
+        TSTagDelimiter = { link = "Delimiter" },
+        TSText = { link = "String" },
+        TSTextReference = { link = "Constant" },
+        TSTitle = { link = "Title" },
+        TSType = { link = "Type" },
+        TSTypeBuiltin = { link = "Builtin" },
+        TSURI = { link = "Link" },
+        TSUnderline = { link = "Underlined" },
+        TSVariable = { link = "Normal" },
+        TSVariableBuiltin = { link = "Builtin" },
+        TSWarning = { link = "DiagnosticWarn" },
 
-    -- Tree-sitter
-    g.TSStrike = { strikethrough = true }
-    -- Linked
-    g.TSAnnotation = g.Label
-    g.TSAttribute = g.Label
-    g.TSBoolean = g.Boolean
-    g.TSCharacter = g.Character
-    g.TSComment = g.Comment
-    g.TSConditional = g.Conditional
-    g.TSConstBuiltin = g.Builtin
-    g.TSConstMacro = g.Macro
-    g.TSConstant = g.Constant
-    g.TSConstructor = g.Type
-    g.TSDanger = g.DiagnosticVirtualTextError
-    g.TSEmphasis = g.Special
-    g.TSEnvironment = g.Macro
-    g.TSEnvironmentName = g.Type
-    g.TSError = g.DiagnosticError
-    g.TSException = g.Exception
-    g.TSField = g.Identifier
-    g.TSFloat = g.Float
-    g.TSFuncBuiltin = g.Builtin
-    g.TSFuncMacro = g.Label
-    g.TSFunction = g.Function
-    g.TSInclude = g.Include
-    g.TSKeyword = g.Keyword
-    g.TSKeywordFunction = g.Keyword
-    g.TSKeywordOperator = g.Operator
-    g.TSKeywordReturn = g.Keyword
-    g.TSLabel = g.Label
-    g.TSLiteral = g.String
-    g.TSMath = g.Special
-    g.TSMethod = g.Function
-    g.TSNamespace = g.Label
-    g.TSNone = g.NonText
-    g.TSNote = g.SpecialComment
-    g.TSNumber = g.Number
-    g.TSOperator = g.Operator
-    g.TSParameter = g.Identifier
-    g.TSParameterReference = g.Identifier
-    g.TSProperty = g.Identifier
-    g.TSPunctBracket = g.Normal
-    g.TSPunctDelimiter = g.Delimiter
-    g.TSPunctSpecial = g.Keyword
-    g.TSRepeat = g.Repeat
-    g.TSString = g.String
-    g.TSStringEscape = g.Keyword
-    g.TSStringRegex = g.String
-    g.TSStringSpecial = g.SpecialChar
-    g.TSStrong = g.Bold
-    g.TSSymbol = g.Identifier
-    g.TSTag = g.Label
-    g.TSTagAttribute = g.Identifier
-    g.TSTagDelimiter = g.Delimiter
-    g.TSText = g.String
-    g.TSTextReference = g.Constant
-    g.TSTitle = g.Title
-    g.TSType = g.Type
-    g.TSTypeBuiltin = g.Builtin
-    g.TSURI = g.Link
-    g.TSUnderline = g.Underlined
-    g.TSVariable = g.Normal
-    g.TSVariableBuiltin = g.Builtin
-    g.TSWarning = g.DiagnosticWarn
+        -- health
+        healthBar = { link = "None" },
+        healthError = { link = "DiagnosticVirtualTextError" },
+        healthHelp = { link = "DiagnosticInfo" },
+        healthSuccess = { link = "DiagnosticVirtualTextSuccess" },
+        healthWarning = { link = "DiagnosticVirtualTextWarn" },
 
-    -- health
-    g.healthBar = g.None
-    g.healthError = g.DiagnosticVirtualTextError
-    g.healthHelp = g.DiagnosticInfo
-    g.healthSuccess = g.DiagnosticVirtualTextSuccess
-    g.healthWarning = g.DiagnosticVirtualTextWarn
+        -- markdown
+        markdownCode = { bg = p.bg_dim, fg = p.fg_dim },
+        -- Linked
+        markdownCodeBlock = { link = "NormalFloat" },
+        markdownH1 = { link = "S1" },
+        markdownH2 = { link = "S2" },
+        markdownH3 = { link = "S3" },
+        markdownH4 = { link = "S4" },
+        markdownH5 = { link = "S5" },
+        markdownH6 = { link = "S6" },
+        markdownHeadingDelimiter = { link = "Normal" },
+        markdownLinkText = { link = "Link" },
 
-    -- markdown
-    g.markdownCode = { bg = p.bg_dim, fg = p.fg_dim }
-    -- Linked
-    g.markdownCodeBlock = g.NormalFloat
-    g.markdownH1 = g.S1
-    g.markdownH2 = g.S2
-    g.markdownH3 = g.S3
-    g.markdownH4 = g.S4
-    g.markdownH5 = g.S5
-    g.markdownH6 = g.S6
-    g.markdownHeadingDelimiter = g.Normal
-    g.markdownLinkText = g.Link
+        -- Plug-ins
+        -- fidget.nvim
+        FidgetTask = { link = "NonText" },
+        FidgetTitle = { link = "Title" },
 
-    -- Plug-ins
-    -- fidget.nvim
-    g.FidgetTask = g.NonText
-    g.FidgetTitle = g.Title
+        -- gitsigns.nvim
+        GitSignsAdd = { link = "DiagnosticSignSuccess" },
+        GitSignsAddInline = { link = "DiffAdd" },
+        GitSignsAddLn = { link = "DiffAdd" },
+        GitSignsAddLnInline = { link = "DiffAdd" },
+        GitSignsAddLnVirtLn = { link = "DiffAdd" },
+        GitSignsAddLnVirtLnInline = { link = "DiffAdd" },
+        GitSignsAddNr = { link = "DiffAdd" },
+        GitSignsChange = { link = "DiagnosticSignWarn" },
+        GitSignsChangeInline = { link = "DiffChange" },
+        GitSignsChangeLn = { link = "DiffChange" },
+        GitSignsChangeLnInline = { link = "DiffChange" },
+        GitSignsChangeLnVirtLine = { link = "DiffChange" },
+        GitSignsChangeLnVirtLineInline = { link = "DiffChange" },
+        GitSignsChangeNr = { link = "DiffChange" },
+        GitSignsCurrentLineBlame = { link = "NonText" },
+        GitSignsDelete = { link = "DiagnosticSignError" },
+        GitSignsDeleteInline = { link = "DiffDelete" },
+        GitSignsDeleteLn = { link = "DiffDelete" },
+        GitSignsDeleteLnInline = { link = "DiffDelete" },
+        GitSignsDeleteLnVirtLine = { link = "DiffDelete" },
+        GitSignsDeleteLnVirtLineInline = { link = "DiffDelete" },
+        GitSignsDeleteNr = { link = "DiffDelete" },
 
-    -- gitsigns.nvim
-    g.GitSignsAdd = g.DiagnosticSignSuccess
-    g.GitSignsAddInline = g.DiffAdd
-    g.GitSignsAddLn = g.DiffAdd
-    g.GitSignsAddLnInline = g.DiffAdd
-    g.GitSignsAddLnVirtLn = g.DiffAdd
-    g.GitSignsAddLnVirtLnInline = g.DiffAdd
-    g.GitSignsAddNr = g.DiffAdd
-    g.GitSignsChange = g.DiagnosticSignWarn
-    g.GitSignsChangeInline = g.DiffChange
-    g.GitSignsChangeLn = g.DiffChange
-    g.GitSignsChangeLnInline = g.DiffChange
-    g.GitSignsChangeLnVirtLine = g.DiffChange
-    g.GitSignsChangeLnVirtLineInline = g.DiffChange
-    g.GitSignsChangeNr = g.DiffChange
-    g.GitSignsCurrentLineBlame = g.NonText
-    g.GitSignsDelete = g.DiagnosticSignError
-    g.GitSignsDeleteInline = g.DiffDelete
-    g.GitSignsDeleteLn = g.DiffDelete
-    g.GitSignsDeleteLnInline = g.DiffDelete
-    g.GitSignsDeleteLnVirtLine = g.DiffDelete
-    g.GitSignsDeleteLnVirtLineInline = g.DiffDelete
-    g.GitSignsDeleteNr = g.DiffDelete
+        -- leap.nvim
+        LeapLabelPrimary = { bg = p.red_intense_bg, fg = p.fg_main, underline = true },
+        LeapLabelSecondary = { bg = p.cyan_subtle_bg, fg = p.fg_dim, underline = true },
+        LeapMatch = { fg = p.red_alt_other, underline = true },
+        -- Linked
+        LeapBackdrop = { link = "None" },
 
-    -- leap.nvim
-    g.LeapLabelPrimary = { bg = p.red_intense_bg, fg = p.fg_main, underline = true }
-    g.LeapLabelSecondary = { bg = p.cyan_subtle_bg, fg = p.fg_dim, underline = true }
-    g.LeapMatch = { fg = p.red_alt_other, underline = true }
-    -- Linked
-    g.LeapBackdrop = g.None
+        -- nvim-ts-rainbow
+        rainbowcol2 = { fg = p.magenta_intense },
+        rainbowcol5 = { fg = p.cyan_intense },
+        rainbowcol6 = { fg = p.orange_intense },
+        -- Linked
+        rainbowcol1 = { link = "Normal" },
+        rainbowcol3 = { link = "DiagnosticInfo" },
+        rainbowcol4 = { link = "DiagnosticHint" },
+        rainbowcol7 = { link = "DiagnosticError" },
 
-    -- nvim-ts-rainbow
-    g.rainbowcol2 = { fg = p.magenta_intense }
-    g.rainbowcol5 = { fg = p.cyan_intense }
-    g.rainbowcol6 = { fg = p.orange_intense }
-    -- Linked
-    g.rainbowcol1 = g.Normal
-    g.rainbowcol3 = g.DiagnosticInfo
-    g.rainbowcol4 = g.DiagnosticHint
-    g.rainbowcol7 = g.DiagnosticError
+        -- telescope.nvim
+        TelescopeBorder = { fg = p.fg_window_divider_outer },
+        -- Linked
+        TelescopeMatching = { link = "Number" },
 
-    -- telescope.nvim
-    g.TelescopeBorder = { fg = p.fg_window_divider_outer }
-    -- Linked
-    g.TelescopeMatching = g.Number
+        -- trouble.nvim
+        TroubleFoldIcon = { link = "markdownHeadingDelimiter" },
+        TroubleIndent = { link = "VertSplit" },
+        TroubleSignError = { link = "DiagnosticError" },
+        TroubleSignHint = { link = "DiagnosticHint" },
+        TroubleSignInformation = { link = "DiagnosticInfo" },
+        TroubleSignOther = { link = "DiagnosticInfo" },
+        TroubleSignWarning = { link = "DiagnosticWarn" },
 
-    -- trouble.nvim
-    g.TroubleFoldIcon = g.markdownHeadingDelimiter
-    g.TroubleIndent = g.VertSplit
-    g.TroubleSignError = g.DiagnosticError
-    g.TroubleSignHint = g.DiagnosticHint
-    g.TroubleSignInformation = g.DiagnosticInfo
-    g.TroubleSignOther = g.DiagnosticInfo
-    g.TroubleSignWarning = g.DiagnosticWarn
-
-    -- Miscellaneous
-    g.NvimInternalError = g.DiagnosticVirtualTextError
-    g.RedrawDebugClear = g.DiagnosticVirtualTextWarn
-    g.RedrawDebugComposed = g.DiagnosticVirtualTextSuccess
-    g.RedrawDebugNormal = g.DiagnosticVirtualTextDebug
-    g.RedrawDebugRecompose = g.DiagnosticVirtualTextError
-
-    return g
+        -- Miscellaneous
+        NvimInternalError = { link = "DiagnosticVirtualTextError" },
+        RedrawDebugClear = { link = "DiagnosticVirtualTextWarn" },
+        RedrawDebugComposed = { link = "DiagnosticVirtualTextSuccess" },
+        RedrawDebugNormal = { link = "DiagnosticVirtualTextDebug" },
+        RedrawDebugRecompose = { link = "DiagnosticVirtualTextError" },
+    }
 end

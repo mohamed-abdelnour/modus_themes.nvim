@@ -1,3 +1,6 @@
 #!/usr/bin/env dash
 
-rg -o '\{.+\}' 'define_theme.lua' | sort | uniq -d
+sed -E '/\{\s*link\s*=\s*".+"\s*\}/d' 'define_theme.lua' |
+    rg -o '\{.+\}' |
+    sort |
+    uniq -d
