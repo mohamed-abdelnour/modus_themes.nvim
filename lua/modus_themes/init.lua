@@ -21,13 +21,8 @@ end
 local define_theme = require("modus_themes/define_theme")
 
 local set_highlights = function()
-    local next = next
     for name, group in pairs(define_theme(M.palette)) do
-        if next(group) == nil then
-            vim.notify(name .. " is not defined.", vim.log.levels.WARN)
-        else
-            vim.api.nvim_set_hl(0, name, group)
-        end
+        vim.api.nvim_set_hl(0, name, group)
     end
 end
 
