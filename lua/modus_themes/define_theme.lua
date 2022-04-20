@@ -59,6 +59,7 @@ return function(p)
         Conceal = { link = "Directory" },
         Conditional = { link = "Keyword" },
         Constant = { link = "Number" },
+        CurSearch = { link = "IncSearch" },
         Cursor = { link = "Normal" },
         CursorColumn = { link = "ColorColumn" },
         CursorIM = { link = "Normal" },
