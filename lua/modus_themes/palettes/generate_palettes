@@ -28,10 +28,6 @@ generate_palette() {
     convert_to_lua "$1" | sort | return_table | stylua -s -
 }
 
-backup_old_palette() {
-    [ -e "$1" ] && mv "$1" "$2"
-}
-
 diff_new_palette() {
     [ -e "$1" ] &&
         diff -u --color=always "$1" "$2" &&
@@ -41,13 +37,10 @@ diff_new_palette() {
 
 generate() {
     lua_file="${1}.lua"
-    lua_backup_file="${lua_file}.bk"
     elisp_file="${1}.el"
 
-    backup_old_palette "$lua_file" "$lua_backup_file"
     generate_palette "$elisp_file" >"$lua_file"
     rm "$elisp_file"
-    diff_new_palette "$lua_backup_file" "$lua_file"
 }
 
 main() {
