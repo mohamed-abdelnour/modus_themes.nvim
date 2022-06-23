@@ -28,13 +28,6 @@ generate_palette() {
     convert_to_lua "$1" | sort | return_table | stylua -s -
 }
 
-diff_new_palette() {
-    [ -e "$1" ] &&
-        diff -u --color=always "$1" "$2" &&
-        rm "$1" ||
-        return 0
-}
-
 generate() {
     lua_file="${1}.lua"
     elisp_file="${1}.el"
