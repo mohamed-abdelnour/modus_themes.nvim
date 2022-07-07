@@ -30,5 +30,5 @@ return function(self)
     self.CmpItemKindUnit = { link = "Number" }
     self.CmpItemKindValue = { link = "Constant" }
     self.CmpItemKindVariable = { link = "Identifier" }
-    self.CmpItemMenuDefault = { link = "Pmenu" }
+    self.CmpItemMenuDefault = { link = "None" }
 end
