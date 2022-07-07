@@ -60,7 +60,7 @@ local std = function(self)
     self.Normal = { fg = self.fg_main }
     self.Number = { fg = self.blue_alt_other }
     self.Pmenu = { bg = self.bg_dim }
-    self.PmenuSel = { bg = self.bg_active }
+    self.PmenuSel = { bg = self.bg_active, fg = self.fg_main }
     self.PmenuThumb = { bg = self.fg_alt }
     self.SpecialComment = { fg = self.fg_docstring }
     self.SpecialKey = { fg = self.fg_escape_char_construct }
