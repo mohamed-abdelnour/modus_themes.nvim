@@ -1,14 +1,14 @@
 return function(self)
-    self.CmpItemAbbrDeprecatedDefault = { fg = self.fg_alt, strikethrough = true }
+    self.CmpItemAbbrDeprecated = { fg = self.fg_alt, strikethrough = true }
     -- Linked
-    self.CmpItemAbbrDefault = { link = "Normal" }
-    self.CmpItemAbbrMatchDefault = { link = "Title" }
-    self.CmpItemAbbrMatchFuzzyDefault = { link = "Boolean" }
+    self.CmpItemAbbr = { link = "Normal" }
+    self.CmpItemAbbrMatch = { link = "Title" }
+    self.CmpItemAbbrMatchFuzzy = { link = "Boolean" }
     self.CmpItemKindClass = { link = "Type" }
     self.CmpItemKindColor = { link = "Label" }
     self.CmpItemKindConstant = { link = "Constant" }
     self.CmpItemKindConstructor = { link = "Type" }
-    self.CmpItemKindDefault = { link = "Title" }
+    self.CmpItemKind = { link = "Title" }
     self.CmpItemKindEnum = { link = "Type" }
     self.CmpItemKindEnumMember = { link = "Constant" }
     self.CmpItemKindEvent = { link = "DiagnosticHint" }
@@ -30,5 +30,5 @@ return function(self)
     self.CmpItemKindUnit = { link = "Number" }
     self.CmpItemKindValue = { link = "Constant" }
     self.CmpItemKindVariable = { link = "Identifier" }
-    self.CmpItemMenuDefault = { link = "None" }
+    self.CmpItemMenu = { link = "None" }
 end
