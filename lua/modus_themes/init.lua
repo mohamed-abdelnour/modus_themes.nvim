@@ -2,48 +2,35 @@ local M = {
     palette = {},
 }
 
-local valid_variant = function(variant)
-    local valid = {
-        operandi = true,
-        vivendi = true,
-    }
-    return valid[variant]
-end
+local variants = {
+    operandi = {
+        name = "operandi",
+        background = "light",
+    },
 
-local set_background = function(variant)
-    local background = {
-        operandi = "light",
-        vivendi = "dark",
-    }
-    vim.opt.background = background[variant]
-end
+    vivendi = {
+        name = "vivendi",
+        background = "dark",
+    },
 
-local define_theme = require("modus_themes/define_theme")
+    palette = function(variant)
+        vim.opt.background = variant.background
+        return require("modus_themes/palettes/" .. variant.name)
+    end,
+}
 
-local set_highlights = function()
-    for name, group in pairs(define_theme(M.palette)) do
-        vim.api.nvim_set_hl(0, name, group)
-    end
-end
-
-M.setup = function(arg)
+local setup = function(variant, arg)
     arg = arg or {}
-    local variant = arg.variant or "vivendi"
-    if valid_variant(variant) then
-        set_background(variant)
-        M.palette = require("modus_themes/palettes/" .. variant)
-        set_highlights()
-    else
-        vim.notify(variant .. " is not a valid theme variant.", vim.log.levels.ERROR)
-    end
+    M.palette = variants.palette(variant)
+    return require("modus_themes/define_theme"):new(M.palette):define(arg.modules)
 end
 
-M.operandi = function()
-    M.setup({ variant = "operandi" })
+M.operandi = function(arg)
+    return setup(variants.operandi, arg)
 end
 
-M.vivendi = function()
-    M.setup({ variant = "vivendi" })
+M.vivendi = function(arg)
+    return setup(variants.vivendi, arg)
 end
 
 return M

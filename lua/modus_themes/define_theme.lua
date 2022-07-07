@@ -1,313 +1,232 @@
-return function(p)
-    return {
-        -- Default and standard groups
-        Bold = { bold = true },
-        Boolean = { fg = p.magenta_alt },
-        ColorColumn = { bg = p.bg_hl_line },
-        Comment = { fg = p.fg_alt },
-        CursorLineNr = { bg = p.bg_active },
-        DiffAdd = { bg = p.bg_diff_focus_added, fg = p.fg_diff_focus_added },
-        DiffChange = { bg = p.bg_diff_focus_changed, fg = p.fg_diff_focus_changed },
-        DiffDelete = { bg = p.bg_diff_focus_removed, fg = p.fg_diff_focus_removed },
-        DiffText = { bg = p.bg_diff_refine_changed, fg = p.fg_diff_refine_changed },
-        Directory = { fg = p.blue },
-        EndOfBuffer = { fg = p.bg_main },
-        FloatBorder = { bg = p.bg_dim, fg = p.fg_window_divider_outer },
-        Function = { fg = p.magenta },
-        Ignore = { bg = p.bg_alt, fg = p.fg_alt },
-        IncSearch = { bg = p.cyan_refine_bg, fg = p.cyan_refine_fg },
-        Italic = { italic = true },
-        Keyword = { fg = p.magenta_alt_other },
-        Label = { fg = p.red_alt_other },
-        LineNr = { bg = p.bg_dim, fg = p.fg_alt },
-        MatchParen = { bg = p.bg_paren_match, fg = p.fg_main },
-        NonText = { fg = p.fg_unfocused },
-        None = { fg = "none" },
-        Normal = { fg = p.fg_main },
-        NormalFloat = { bg = p.bg_dim },
-        Number = { fg = p.blue_alt_other },
-        Pmenu = { bg = p.bg_alt },
-        PmenuSel = { bg = p.cyan_subtle_bg },
-        PmenuThumb = { bg = p.fg_alt },
-        SpecialComment = { fg = p.fg_docstring },
-        SpecialKey = { fg = p.fg_escape_char_construct },
-        StatusLine = { bg = p.bg_dim, fg = p.fg_active },
-        StatusLineNC = { bg = p.bg_dim, fg = p.fg_inactive },
-        String = { fg = p.blue_alt },
-        Substitute = { bg = p.yellow_refine_bg, fg = p.yellow_refine_fg },
-        TermCursor = { bg = p.fg_main, fg = p.bg_main },
-        Title = { fg = p.cyan },
-        Type = { fg = p.cyan_alt_other },
-        Underlined = { underline = true },
-        VertSplit = { fg = p.fg_window_divider_inner },
-        Visual = { bg = p.bg_region, fg = p.fg_main },
-        Whitespace = { bg = p.bg_whitespace, fg = p.fg_whitespace },
-        -- Extra
-        Link = { underline = true, fg = p.blue_alt_other },
-        S1 = { link = "Normal" },
-        S2 = { fg = p.fg_special_warm },
-        S3 = { fg = p.fg_special_cold },
-        S4 = { fg = p.fg_special_mild },
-        S5 = { fg = p.fg_special_calm },
-        S6 = { fg = p.yellow_nuanced_fg },
-        S7 = { fg = p.red_nuanced_fg },
-        S8 = { fg = p.magenta_nuanced_fg },
-        -- Linked
-        Builtin = { link = "Boolean" },
-        Character = { link = "Type" },
-        Conceal = { link = "Directory" },
-        Conditional = { link = "Keyword" },
-        Constant = { link = "Number" },
-        CurSearch = { link = "IncSearch" },
-        Cursor = { link = "Normal" },
-        CursorColumn = { link = "ColorColumn" },
-        CursorIM = { link = "Normal" },
-        CursorLine = { link = "ColorColumn" },
-        Debug = { link = "Boolean" },
-        Define = { link = "Label" },
-        Delimiter = { link = "Normal" },
-        Exception = { link = "Keyword" },
-        Float = { link = "Number" },
-        FoldColumn = { link = "LineNr" },
-        Folded = { link = "Ignore" },
-        Identifier = { link = "Title" },
-        Include = { link = "Keyword" },
-        Macro = { link = "Label" },
-        ModeMsg = { link = "Normal" },
-        MoreMsg = { link = "Type" },
-        MsgArea = { link = "Normal" },
-        MsgSeparator = { link = "Pmenu" },
-        NormalNC = { link = "Normal" },
-        Operator = { link = "Keyword" },
-        PmenuSbar = { link = "Pmenu" },
-        PreCondit = { link = "Label" },
-        PreProc = { link = "Label" },
-        Question = { link = "Type" },
-        Repeat = { link = "Boolean" },
-        SignColumn = { link = "LineNr" },
-        Special = { link = "Keyword" },
-        SpecialChar = { link = "Keyword" },
-        Statement = { link = "Keyword" },
-        StorageClass = { link = "Type" },
-        Structure = { link = "Type" },
-        TabLine = { link = "Ignore" },
-        TabLineFill = { link = "None" },
-        TabLineSel = { link = "PmenuSel" },
-        Tag = { link = "Boolean" },
-        TermCursorNC = { link = "TermCursor" },
-        Todo = { link = "Label" },
-        Typedef = { link = "Type" },
-        VisualNOS = { link = "Visual" },
-        WildMenu = { link = "PmenuSel" },
-        lCursor = { link = "Normal" },
+local G = {
+    palette = {},
+    groups = {},
+    modules = {},
 
-        -- Diagnostic
-        -- Base
-        DiagnosticError = { link = "Label" },
-        DiagnosticHint = { link = "Number" },
-        DiagnosticInfo = { link = "Keyword" },
-        DiagnosticWarn = { fg = p.yellow_alt_other },
-        -- Underlined
-        DiagnosticUnderlineError = { underline = true, sp = p.red_alt_other },
-        DiagnosticUnderlineHint = { underline = true, sp = p.blue_alt_other },
-        DiagnosticUnderlineInfo = { underline = true, sp = p.magenta_alt_other },
-        DiagnosticUnderlineWarn = { underline = true, sp = p.yellow_alt_other },
-        -- Signs
-        DiagnosticSignError = { bg = p.bg_dim, fg = p.red_alt_other },
-        DiagnosticSignHint = { bg = p.bg_dim, fg = p.blue_alt_other },
-        DiagnosticSignInfo = { bg = p.bg_dim, fg = p.magenta_alt_other },
-        DiagnosticSignWarn = { bg = p.bg_dim, fg = p.yellow_alt_other },
-        -- Virtual Text
-        DiagnosticVirtualTextError = { bg = p.red_intense_bg, fg = p.fg_main },
-        DiagnosticVirtualTextHint = { bg = p.cyan_subtle_bg, fg = p.fg_dim },
-        DiagnosticVirtualTextInfo = { bg = p.magenta_subtle_bg, fg = p.fg_dim },
-        DiagnosticVirtualTextWarn = { bg = p.yellow_intense_bg, fg = p.fg_main },
-        -- Extra
-        DiagnosticSignSuccess = { bg = p.bg_dim, fg = p.green_alt_other },
-        DiagnosticVirtualTextDebug = { bg = p.fg_alt, fg = p.bg_main },
-        DiagnosticVirtualTextSuccess = { bg = p.green_intense_bg, fg = p.fg_main },
-        -- Linked
-        DiagnosticFloatingError = { link = "DiagnosticError" },
-        DiagnosticFloatingHint = { link = "DiagnosticHint" },
-        DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
-        DiagnosticFloatingWarn = { link = "DiagnosticWarn" },
-        Error = { link = "DiagnosticError" },
-        ErrorMsg = { link = "DiagnosticVirtualTextError" },
-        QuickFixLine = { link = "DiagnosticVirtualTextSuccess" },
-        Search = { link = "DiagnosticVirtualTextSuccess" },
-        SpellBad = { link = "DiagnosticVirtualTextError" },
-        SpellCap = { link = "DiagnosticVirtualTextWarn" },
-        SpellLocal = { link = "DiagnosticVirtualTextInfo" },
-        SpellRare = { link = "DiagnosticVirtualTextHint" },
-        WarningMsg = { link = "DiagnosticVirtualTextWarn" },
+    load = function(self, module)
+        self.modules[module] = require("modus_themes/modules/" .. module)
+    end,
 
-        -- LSP
-        LspReferenceText = { bg = p.bg_hl_alt },
-        -- Linked
-        LspCodeLens = { link = "NonText" },
-        LspReferenceRead = { link = "LspReferenceText" },
-        LspReferenceWrite = { link = "LspReferenceText" },
+    __index = function(self, key)
+        return self.palette[key]
+    end,
 
-        -- Tree-sitter
-        TSStrike = { strikethrough = true },
-        -- Linked
-        TSAnnotation = { link = "PreProc" },
-        TSAttribute = { link = "PreProc" },
-        TSBoolean = { link = "Boolean" },
-        TSCharacter = { link = "Character" },
-        TSCharacterSpecial = { link = "SpecialChar" },
-        TSComment = { link = "Comment" },
-        TSConditional = { link = "Conditional" },
-        TSConstBuiltin = { link = "Builtin" },
-        TSConstMacro = { link = "Macro" },
-        TSConstant = { link = "Constant" },
-        TSConstructor = { link = "Type" },
-        TSDanger = { link = "DiagnosticVirtualTextError" },
-        TSDebug = { link = "Debug" },
-        TSDefine = { link = "Define" },
-        TSEmphasis = { link = "Italic" },
-        TSEnvironment = { link = "Macro" },
-        TSEnvironmentName = { link = "Type" },
-        TSException = { link = "Exception" },
-        TSField = { link = "Identifier" },
-        TSFloat = { link = "Float" },
-        TSFuncBuiltin = { link = "Builtin" },
-        TSFuncMacro = { link = "Macro" },
-        TSFunction = { link = "Function" },
-        TSInclude = { link = "Include" },
-        TSKeyword = { link = "Keyword" },
-        TSKeywordFunction = { link = "Keyword" },
-        TSKeywordOperator = { link = "TSOperator" },
-        TSKeywordReturn = { link = "TSKeyword" },
-        TSLabel = { link = "Label" },
-        TSLiteral = { link = "String" },
-        TSMath = { link = "Special" },
-        TSMethod = { link = "Function" },
-        TSNamespace = { link = "Include" },
-        TSNone = { link = "None" },
-        TSNote = { link = "DiagnosticHint" },
-        TSNumber = { link = "Number" },
-        TSOperator = { link = "Operator" },
-        TSParameter = { link = "Identifier" },
-        TSParameterReference = { link = "TSParameter" },
-        TSPlaygroundFocus = { link = "Visual" },
-        TSPlaygroundLang = { link = "String" },
-        TSPreProc = { link = "PreProc" },
-        TSProperty = { link = "Identifier" },
-        TSPunctBracket = { link = "Delimiter" },
-        TSPunctDelimiter = { link = "Delimiter" },
-        TSPunctSpecial = { link = "Keyword" },
-        TSQueryLinterError = { link = "Error" },
-        TSRepeat = { link = "Repeat" },
-        TSStorageClass = { link = "StorageClass" },
-        TSString = { link = "String" },
-        TSStringEscape = { link = "SpecialKey" },
-        TSStringRegex = { link = "String" },
-        TSStringSpecial = { link = "SpecialChar" },
-        TSStrong = { link = "Bold" },
-        TSSymbol = { link = "Identifier" },
-        TSTag = { link = "Label" },
-        TSTagAttribute = { link = "TSProperty" },
-        TSTagDelimiter = { link = "Delimiter" },
-        TSText = { link = "TSNone" },
-        TSTextReference = { link = "Constant" },
-        TSTitle = { link = "Title" },
-        TSTodo = { link = "Todo" },
-        TSType = { link = "Type" },
-        TSTypeBuiltin = { link = "Builtin" },
-        TSTypeDefinition = { link = "Typedef" },
-        TSTypeQualifier = { link = "Type" },
-        TSURI = { link = "Underlined" },
-        TSUnderline = { link = "Underlined" },
-        TSVariable = { link = "Normal" },
-        TSVariableBuiltin = { link = "Builtin" },
-        TSWarning = { link = "DiagnosticWarn" },
+    __newindex = function(self, key, value)
+        self.groups[key] = value
+        vim.api.nvim_set_hl(0, key, value)
+    end,
 
-        -- health
-        healthBar = { link = "None" },
-        healthError = { link = "DiagnosticVirtualTextError" },
-        healthHelp = { link = "DiagnosticInfo" },
-        healthSuccess = { link = "DiagnosticVirtualTextSuccess" },
-        healthWarning = { link = "DiagnosticVirtualTextWarn" },
+    new = function(self, palette)
+        self.palette = palette
+        setmetatable(self, self)
+        return self
+    end,
 
-        -- markdown
-        markdownCode = { bg = p.bg_dim, fg = p.fg_dim },
-        -- Linked
-        markdownCodeBlock = { link = "NormalFloat" },
-        markdownH1 = { link = "S1" },
-        markdownH2 = { link = "S2" },
-        markdownH3 = { link = "S3" },
-        markdownH4 = { link = "S4" },
-        markdownH5 = { link = "S5" },
-        markdownH6 = { link = "S6" },
-        markdownHeadingDelimiter = { link = "Normal" },
-        markdownLinkText = { link = "Link" },
+    define = function(self, fs)
+        fs = fs or self.modules
+        self.modules.base(self)
+        for _, f in pairs(fs) do
+            if f ~= self.modules.base then
+                f(self)
+            end
+        end
+    end,
+}
 
-        -- Plug-ins
-        -- fidget.nvim
-        FidgetTask = { link = "NonText" },
-        FidgetTitle = { link = "Title" },
-
-        -- gitsigns.nvim
-        GitSignsAdd = { link = "DiagnosticSignSuccess" },
-        GitSignsAddInline = { link = "DiffAdd" },
-        GitSignsAddLn = { link = "DiffAdd" },
-        GitSignsAddLnInline = { link = "DiffAdd" },
-        GitSignsAddLnVirtLn = { link = "DiffAdd" },
-        GitSignsAddLnVirtLnInline = { link = "DiffAdd" },
-        GitSignsAddNr = { link = "DiffAdd" },
-        GitSignsChange = { link = "DiagnosticSignWarn" },
-        GitSignsChangeInline = { link = "DiffChange" },
-        GitSignsChangeLn = { link = "DiffChange" },
-        GitSignsChangeLnInline = { link = "DiffChange" },
-        GitSignsChangeLnVirtLine = { link = "DiffChange" },
-        GitSignsChangeLnVirtLineInline = { link = "DiffChange" },
-        GitSignsChangeNr = { link = "DiffChange" },
-        GitSignsCurrentLineBlame = { link = "NonText" },
-        GitSignsDelete = { link = "DiagnosticSignError" },
-        GitSignsDeleteInline = { link = "DiffDelete" },
-        GitSignsDeleteLn = { link = "DiffDelete" },
-        GitSignsDeleteLnInline = { link = "DiffDelete" },
-        GitSignsDeleteLnVirtLine = { link = "DiffDelete" },
-        GitSignsDeleteLnVirtLineInline = { link = "DiffDelete" },
-        GitSignsDeleteNr = { link = "DiffDelete" },
-
-        -- leap.nvim
-        LeapLabelPrimary = { bg = p.red_intense_bg, fg = p.fg_main, underline = true },
-        LeapLabelSecondary = { bg = p.cyan_subtle_bg, fg = p.fg_dim, underline = true },
-        LeapMatch = { fg = p.red_alt_other, underline = true },
-        -- Linked
-        LeapBackdrop = { link = "None" },
-
-        -- nvim-ts-rainbow
-        rainbowcol2 = { fg = p.magenta_intense },
-        rainbowcol5 = { fg = p.cyan_intense },
-        rainbowcol6 = { fg = p.orange_intense },
-        -- Linked
-        rainbowcol1 = { link = "Normal" },
-        rainbowcol3 = { link = "DiagnosticInfo" },
-        rainbowcol4 = { link = "DiagnosticHint" },
-        rainbowcol7 = { link = "DiagnosticError" },
-
-        -- telescope.nvim
-        TelescopeBorder = { fg = p.fg_window_divider_outer },
-        -- Linked
-        TelescopeMatching = { link = "Number" },
-
-        -- trouble.nvim
-        TroubleFoldIcon = { link = "markdownHeadingDelimiter" },
-        TroubleIndent = { link = "VertSplit" },
-        TroubleSignError = { link = "DiagnosticError" },
-        TroubleSignHint = { link = "DiagnosticHint" },
-        TroubleSignInformation = { link = "DiagnosticInfo" },
-        TroubleSignOther = { link = "DiagnosticInfo" },
-        TroubleSignWarning = { link = "DiagnosticWarn" },
-
-        -- Miscellaneous
-        NvimInternalError = { link = "DiagnosticVirtualTextError" },
-        RedrawDebugClear = { link = "DiagnosticVirtualTextWarn" },
-        RedrawDebugComposed = { link = "DiagnosticVirtualTextSuccess" },
-        RedrawDebugNormal = { link = "DiagnosticVirtualTextDebug" },
-        RedrawDebugRecompose = { link = "DiagnosticVirtualTextError" },
-    }
+local std = function(self)
+    self.Bold = { bold = true }
+    self.Boolean = { fg = self.magenta_alt }
+    self.ColorColumn = { bg = self.bg_hl_line }
+    self.Comment = { fg = self.fg_alt }
+    self.DiffAdd = { bg = self.bg_diff_focus_added, fg = self.fg_diff_focus_added }
+    self.DiffChange = { bg = self.bg_diff_focus_changed, fg = self.fg_diff_focus_changed }
+    self.DiffDelete = { bg = self.bg_diff_focus_removed, fg = self.fg_diff_focus_removed }
+    self.DiffText = { bg = self.bg_diff_refine_changed, fg = self.fg_diff_refine_changed }
+    self.Directory = { fg = self.blue }
+    self.EndOfBuffer = { fg = self.bg_main }
+    self.FloatBorder = { bg = self.bg_dim, fg = self.fg_window_divider_outer }
+    self.FloatShadow = { bg = self.bg_main, blend = 80 }
+    self.FloatShadowThrough = { bg = self.bg_main, blend = 100 }
+    self.Function = { fg = self.magenta }
+    self.Ignore = { bg = self.bg_alt, fg = self.fg_alt }
+    self.IncSearch = { bg = self.cyan_refine_bg, fg = self.cyan_refine_fg }
+    self.Italic = { italic = true }
+    self.Keyword = { fg = self.magenta_alt_other }
+    self.Label = { fg = self.red_alt_other }
+    self.LineNr = { bg = self.bg_dim, fg = self.fg_alt }
+    self.MatchParen = { bg = self.bg_paren_match, fg = self.fg_main }
+    self.NonText = { fg = self.fg_unfocused }
+    self.None = { fg = "none" }
+    self.Normal = { fg = self.fg_main }
+    self.Number = { fg = self.blue_alt_other }
+    self.Pmenu = { bg = self.bg_dim }
+    self.PmenuSel = { bg = self.bg_active }
+    self.PmenuThumb = { bg = self.fg_alt }
+    self.SpecialComment = { fg = self.fg_docstring }
+    self.SpecialKey = { fg = self.fg_escape_char_construct }
+    self.StatusLine = { bg = self.bg_dim, fg = self.fg_active }
+    self.StatusLineNC = { bg = self.bg_dim, fg = self.fg_inactive }
+    self.String = { fg = self.blue_alt }
+    self.Substitute = { bg = self.yellow_refine_bg, fg = self.yellow_refine_fg }
+    self.TermCursor = { bg = self.fg_main, fg = self.bg_main }
+    self.Title = { fg = self.cyan }
+    self.Type = { fg = self.cyan_alt_other }
+    self.Underlined = { underline = true }
+    self.VertSplit = { fg = self.fg_window_divider_inner }
+    self.Visual = { bg = self.bg_region, fg = self.fg_main }
+    self.Whitespace = { bg = self.bg_whitespace, fg = self.fg_whitespace }
+    -- Extra
+    self.Link = { underline = true, fg = self.blue_alt_other }
+    self.S1 = { link = "Normal" }
+    self.S2 = { fg = self.fg_special_warm }
+    self.S3 = { fg = self.fg_special_cold }
+    self.S4 = { fg = self.fg_special_mild }
+    self.S5 = { fg = self.fg_special_calm }
+    self.S6 = { fg = self.yellow_nuanced_fg }
+    self.S7 = { fg = self.red_nuanced_fg }
+    self.S8 = { fg = self.magenta_nuanced_fg }
+    -- Linked
+    self.Builtin = { link = "Boolean" }
+    self.Character = { link = "Type" }
+    self.Conceal = { link = "Directory" }
+    self.Conditional = { link = "Keyword" }
+    self.Constant = { link = "Number" }
+    self.CurSearch = { link = "IncSearch" }
+    self.Cursor = { link = "Normal" }
+    self.CursorColumn = { link = "ColorColumn" }
+    self.CursorIM = { link = "Normal" }
+    self.CursorLine = { link = "ColorColumn" }
+    self.CursorLineFold = { link = "FoldColumn" }
+    self.CursorLineNr = { link = "PmenuSel" }
+    self.CursorLineSign = { link = "SignColumn" }
+    self.Debug = { link = "Boolean" }
+    self.Define = { link = "Label" }
+    self.Delimiter = { link = "Normal" }
+    self.Exception = { link = "Keyword" }
+    self.Float = { link = "Number" }
+    self.FoldColumn = { link = "LineNr" }
+    self.Folded = { link = "Ignore" }
+    self.Identifier = { link = "Title" }
+    self.Include = { link = "Keyword" }
+    self.LineNrAbove = { link = "LineNr" }
+    self.LineNrBelow = { link = "LineNr" }
+    self.Macro = { link = "Label" }
+    self.ModeMsg = { link = "Normal" }
+    self.MoreMsg = { link = "Type" }
+    self.MsgArea = { link = "Normal" }
+    self.MsgSeparator = { link = "Pmenu" }
+    self.NormalFloat = { link = "Pmenu" }
+    self.NormalNC = { link = "Normal" }
+    self.Operator = { link = "Keyword" }
+    self.PmenuSbar = { link = "Pmenu" }
+    self.PreCondit = { link = "Label" }
+    self.PreProc = { link = "Label" }
+    self.Question = { link = "Type" }
+    self.Repeat = { link = "Boolean" }
+    self.SignColumn = { link = "LineNr" }
+    self.Special = { link = "Keyword" }
+    self.SpecialChar = { link = "Keyword" }
+    self.Statement = { link = "Keyword" }
+    self.StorageClass = { link = "Type" }
+    self.Structure = { link = "Type" }
+    self.TabLine = { link = "Ignore" }
+    self.TabLineFill = { link = "None" }
+    self.TabLineSel = { link = "PmenuSel" }
+    self.Tag = { link = "Boolean" }
+    self.TermCursorNC = { link = "TermCursor" }
+    self.Todo = { link = "Label" }
+    self.Typedef = { link = "Type" }
+    self.VisualNC = { link = "Visual" }
+    self.VisualNOS = { link = "Visual" }
+    self.WildMenu = { link = "PmenuSel" }
+    self.WinBar = { link = "StatusLine" }
+    self.WinBarNC = { link = "StatusLineNC" }
+    self.WinSeparator = { link = "VertSplit" }
+    self.lCursor = { link = "Normal" }
 end
+
+local diagnostic = function(self)
+    -- Base
+    self.DiagnosticError = { link = "Label" }
+    self.DiagnosticHint = { link = "Number" }
+    self.DiagnosticInfo = { link = "Keyword" }
+    self.DiagnosticWarn = { fg = self.yellow_alt_other }
+    -- Underlined
+    self.DiagnosticUnderlineError = { underline = true, sp = self.red_alt_other }
+    self.DiagnosticUnderlineHint = { underline = true, sp = self.blue_alt_other }
+    self.DiagnosticUnderlineInfo = { underline = true, sp = self.magenta_alt_other }
+    self.DiagnosticUnderlineWarn = { underline = true, sp = self.yellow_alt_other }
+    -- Signs
+    self.DiagnosticSignError = { bg = self.bg_dim, fg = self.red_alt_other }
+    self.DiagnosticSignHint = { bg = self.bg_dim, fg = self.blue_alt_other }
+    self.DiagnosticSignInfo = { bg = self.bg_dim, fg = self.magenta_alt_other }
+    self.DiagnosticSignWarn = { bg = self.bg_dim, fg = self.yellow_alt_other }
+    -- Virtual Text
+    self.DiagnosticVirtualTextError = { bg = self.red_intense_bg, fg = self.fg_main }
+    self.DiagnosticVirtualTextHint = { bg = self.cyan_subtle_bg, fg = self.fg_dim }
+    self.DiagnosticVirtualTextInfo = { bg = self.magenta_subtle_bg, fg = self.fg_dim }
+    self.DiagnosticVirtualTextWarn = { bg = self.yellow_intense_bg, fg = self.fg_main }
+    -- Extra
+    self.DiagnosticSignSuccess = { bg = self.bg_dim, fg = self.green_alt_other }
+    self.DiagnosticVirtualTextDebug = { bg = self.fg_alt, fg = self.bg_main }
+    self.DiagnosticVirtualTextSuccess = { bg = self.green_intense_bg, fg = self.fg_main }
+    -- Linked
+    self.DiagnosticFloatingError = { link = "DiagnosticError" }
+    self.DiagnosticFloatingHint = { link = "DiagnosticHint" }
+    self.DiagnosticFloatingInfo = { link = "DiagnosticInfo" }
+    self.DiagnosticFloatingWarn = { link = "DiagnosticWarn" }
+    self.Error = { link = "DiagnosticError" }
+    self.ErrorMsg = { link = "DiagnosticVirtualTextError" }
+    self.QuickFixLine = { link = "DiagnosticVirtualTextSuccess" }
+    self.Search = { link = "DiagnosticVirtualTextSuccess" }
+    self.SpellBad = { link = "DiagnosticVirtualTextError" }
+    self.SpellCap = { link = "DiagnosticVirtualTextWarn" }
+    self.SpellLocal = { link = "DiagnosticVirtualTextInfo" }
+    self.SpellRare = { link = "DiagnosticVirtualTextHint" }
+    self.WarningMsg = { link = "DiagnosticVirtualTextWarn" }
+end
+
+local lsp = function(self)
+    self.LspReferenceText = { bg = self.bg_hl_alt }
+    -- Linked
+    self.LspCodeLens = { link = "NonText" }
+    self.LspReferenceRead = { link = "LspReferenceText" }
+    self.LspReferenceWrite = { link = "LspReferenceText" }
+end
+
+local miscellaneous = function(self)
+    self.NvimInternalError = { link = "DiagnosticVirtualTextError" }
+    self.RedrawDebugClear = { link = "DiagnosticVirtualTextWarn" }
+    self.RedrawDebugComposed = { link = "DiagnosticVirtualTextSuccess" }
+    self.RedrawDebugNormal = { link = "DiagnosticVirtualTextDebug" }
+    self.RedrawDebugRecompose = { link = "DiagnosticVirtualTextError" }
+end
+
+G.modules.base = function(self)
+    std(self)
+    diagnostic(self)
+    lsp(self)
+    miscellaneous(self)
+end
+
+local main = function()
+    local modules = {
+        "cmp",
+        "fidget",
+        "gitsigns",
+        "health",
+        "leap",
+        "markdown",
+        "telescope",
+        "tree_sitter",
+        "ts_rainbow",
+    }
+
+    for i = 1, #modules do
+        G:load(modules[i])
+    end
+end
+
+main()
+
+return G
