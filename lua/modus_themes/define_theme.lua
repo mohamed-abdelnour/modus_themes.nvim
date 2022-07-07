@@ -1,38 +1,3 @@
-local G = {
-    palette = {},
-    groups = {},
-    modules = {},
-
-    load = function(self, module)
-        self.modules[module] = require("modus_themes.modules." .. module)
-    end,
-
-    __index = function(self, key)
-        return self.palette[key]
-    end,
-
-    __newindex = function(self, key, value)
-        self.groups[key] = value
-        vim.api.nvim_set_hl(0, key, value)
-    end,
-
-    new = function(self, palette)
-        self.palette = palette
-        setmetatable(self, self)
-        return self
-    end,
-
-    define = function(self, fs)
-        fs = fs or self.modules
-        self.modules.base(self)
-        for _, f in pairs(fs) do
-            if f ~= self.modules.base then
-                f(self)
-            end
-        end
-    end,
-}
-
 local std = function(self)
     self.Bold = { bold = true }
     self.Boolean = { fg = self.magenta_alt }
@@ -202,31 +167,41 @@ local miscellaneous = function(self)
     self.RedrawDebugRecompose = { link = "DiagnosticVirtualTextError" }
 end
 
-G.modules.base = function(self)
+local base = function(self)
     std(self)
     diagnostic(self)
     lsp(self)
     miscellaneous(self)
 end
 
-local main = function()
-    local modules = {
-        "cmp",
-        "fidget",
-        "gitsigns",
-        "health",
-        "leap",
-        "markdown",
-        "telescope",
-        "tree_sitter",
-        "ts_rainbow",
-    }
+local G = {
+    palette = {},
+    groups = {},
 
-    for i = 1, #modules do
-        G:load(modules[i])
-    end
-end
+    modules = require("modus_themes.modules"),
 
-main()
+    __index = function(self, key)
+        return self.palette[key]
+    end,
+
+    __newindex = function(self, key, value)
+        self.groups[key] = value
+        vim.api.nvim_set_hl(0, key, value)
+    end,
+
+    new = function(self, palette)
+        self.palette = palette
+        setmetatable(self, self)
+        return self
+    end,
+
+    define = function(self, fs)
+        fs = fs or self.modules()
+        base(self)
+        for _, f in pairs(fs) do
+            f(self)
+        end
+    end,
+}
 
 return G
