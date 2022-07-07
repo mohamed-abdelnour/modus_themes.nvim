@@ -4,7 +4,7 @@ local G = {
     modules = {},
 
     load = function(self, module)
-        self.modules[module] = require("modus_themes/modules/" .. module)
+        self.modules[module] = require("modus_themes.modules." .. module)
     end,
 
     __index = function(self, key)

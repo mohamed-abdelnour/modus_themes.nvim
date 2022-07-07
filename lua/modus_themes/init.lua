@@ -15,14 +15,14 @@ local variants = {
 
     palette = function(variant)
         vim.opt.background = variant.background
-        return require("modus_themes/palettes/" .. variant.name)
+        return require("modus_themes.palettes." .. variant.name)
     end,
 }
 
 local setup = function(variant, arg)
     arg = arg or {}
     M.palette = variants.palette(variant)
-    return require("modus_themes/define_theme"):new(M.palette):define(arg.modules)
+    return require("modus_themes.define_theme"):new(M.palette):define(arg.modules)
 end
 
 M.operandi = function(arg)
